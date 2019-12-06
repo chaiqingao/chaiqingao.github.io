@@ -6,6 +6,8 @@ cache: npm
 branches:
   only:
     - dev # build master branch only
+before_install: 
+  - export TZ='Asia/Shanghai'
 script:
   - hexo generate # generate static files
 deploy:
