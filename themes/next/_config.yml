@@ -270,7 +270,7 @@ reward_settings:
   # If true, reward will be displayed in every article by default.
   enable: true
   animation: false
-  comment: 如果您觉得这篇分享不错，可以打赏作者一杯奶茶哦~
+  comment: 如果您觉得这篇分享不错，可以打赏作者一包辣条哦~
 
 reward:
   wechatpay: /images/wechatpay.png
@@ -622,7 +622,7 @@ valine:
   appkey: xtzL8qcaVyfk3m6kb89Xlunv # Your leancloud application appkey
   notify: false # Mail notifier
   verify: false # Verification code
-  placeholder: Just go go # Comment box placeholder
+  placeholder: 听说留下邮箱可以收到回复通知哦~💬 # Comment box placeholder
   avatar: mm # Gravatar style
   guest_info: nick,mail,link # Custom comment header
   pageSize: 10 # Pagination size
