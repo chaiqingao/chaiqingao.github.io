@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/notebook-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/notebook-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/notebook-16x16.png">
+  <link rel="mask-icon" href="/images/notebook.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://chaiqingao.github.io').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="简要介绍作者是一名学生，需要在手机上记录课表，虽然现在已经有很多的课程表App了，但是有些呢不支持从教务系统导入，有些呢会有很多广告，再有些就是界面很丑啦~ 因此，为了能够便捷的查看课表，免去现有的课程表软件带来的烦恼，我决定！开发一款无害的课表软件。于是，这款“课表助手”就应运而生（虽然不是一个App，后面再详细解释），它的作用不是显示课表，而是将教务系统中的课表转为iCalendar文件。iC">
+<meta name="keywords" content="Javascript,课程表,iCalendar">
+<meta property="og:type" content="article">
+<meta property="og:title" content="课表助手">
+<meta property="og:url" content="https:&#x2F;&#x2F;chaiqingao.github.io&#x2F;2020&#x2F;03&#x2F;13&#x2F;%E8%AF%BE%E8%A1%A8%E5%8A%A9%E6%89%8B&#x2F;index.html">
+<meta property="og:site_name" content="小小柴io">
+<meta property="og:description" content="简要介绍作者是一名学生，需要在手机上记录课表，虽然现在已经有很多的课程表App了，但是有些呢不支持从教务系统导入，有些呢会有很多广告，再有些就是界面很丑啦~ 因此，为了能够便捷的查看课表，免去现有的课程表软件带来的烦恼，我决定！开发一款无害的课表软件。于是，这款“课表助手”就应运而生（虽然不是一个App，后面再详细解释），它的作用不是显示课表，而是将教务系统中的课表转为iCalendar文件。iC">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;03&#x2F;13&#x2F;8uc7a8.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;03&#x2F;13&#x2F;8uT8Nn.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;03&#x2F;13&#x2F;8uTbgf.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;03&#x2F;13&#x2F;8uT7Ct.jpg">
+<meta property="og:updated_time" content="2020-03-13T06:12:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;03&#x2F;13&#x2F;8uc7a8.png">
+
+<link rel="canonical" href="https://chaiqingao.github.io/2020/03/13/%E8%AF%BE%E8%A1%A8%E5%8A%A9%E6%89%8B/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>课表助手 | 小小柴io</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?36006189ec777c532df3ce24fb35b740";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小小柴io</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://chaiqingao.github.io/2020/03/13/%E8%AF%BE%E8%A1%A8%E5%8A%A9%E6%89%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Qingao Chai">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小小柴io">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          课表助手
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-13 14:12:48" itemprop="dateCreated datePublished" datetime="2020-03-13T14:12:48+08:00">2020-03-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B0%8F%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index">
+                    <span itemprop="name">小工具</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B%E5%88%86%E4%BA%AB/" itemprop="url" rel="index">
+                    <span itemprop="name">开发过程分享</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/03/13/%E8%AF%BE%E8%A1%A8%E5%8A%A9%E6%89%8B/" class="post-meta-item leancloud_visitors" data-flag-title="课表助手" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">评论数：</span>
+    
+    <a title="valine" href="/2020/03/13/%E8%AF%BE%E8%A1%A8%E5%8A%A9%E6%89%8B/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/03/13/%E8%AF%BE%E8%A1%A8%E5%8A%A9%E6%89%8B/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="简要介绍"><a href="#简要介绍" class="headerlink" title="简要介绍"></a>简要介绍</h2><p>作者是一名学生，需要在手机上记录课表，虽然现在已经有很多的课程表App了，但是有些呢不支持从教务系统导入，有些呢会有很多广告，再有些就是界面很丑啦~</p>
+<p>因此，为了能够便捷的查看课表，免去现有的课程表软件带来的烦恼，我决定！开发一款无害的课表软件。于是，这款“课表助手”就应运而生（虽然不是一个App，后面再详细解释），它的作用不是显示课表，而是将教务系统中的课表转为<a href="https://zh.wikipedia.org/wiki/ICalendar" target="_blank" rel="noopener">iCalendar</a>文件。iCalendar是一种日历数据交换的标准，既然是标准了，那大家肯定都支持啦，目前已经测试了Win10/Android9/iPadOS13，都可以导入至日历。导入后就可以愉快的使用系统日历查看课表了，不得不说，系统自带的日历界面清新、使用流畅、没有广告（用过的都说好🙄）。</p>
+<ul>
+<li>脚本安装请查看<a href="https://greasyfork.org/zh-CN/scripts/397788-%E8%AF%BE%E8%A1%A8%E5%8A%A9%E6%89%8B" target="_blank" rel="noopener">Greasyfork</a></li>
+<li>完整源码请查看<a href="https://github.com/chaiqingao/Curriculum-to-iCalendar" target="_blank" rel="noopener">Github</a></li>
+</ul>
+<a id="more"></a>
+
+<h2 id="开发过程"><a href="#开发过程" class="headerlink" title="开发过程"></a>开发过程</h2><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>为了明确我要做什么，首先打开了教务系统课程表页面，他是这个样子的：<br><img src="https://s1.ax1x.com/2020/03/13/8uc7a8.png" alt="教务系统"><br>看了一下，嗯！挺好的，适合序列化。然后再看一下iCalendar文件的样子：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">BEGIN:VCALENDAR</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">VERSION:2.0</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">PRODID:Curriculum-to-iCalendar</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">BEGIN:VEVENT</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">DTSTAMP:20200313T032000Z</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">UID:0@https://chaiqingao.github.io/</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">SUMMARY:summary</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">DTSTART:20200217T000000Z</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">DTEND:20200217T013500Z</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">RRULE:FREQ=WEEKLY;UNTIL=20200428T013500Z;INTERVAL=1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">LOCATION:location</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">DESCRIPTION:description</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">END:VEVENT</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">BEGIN:VEVENT</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">......</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">END:VEVENT</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">END:VCALENDAR</span></pre></td></tr></table></figure>
+
+<p>不难看出，一个iCalendar文件由三部分组成：头 + [VENVENT数组] + 尾。每一个<code>VENVENT</code>有<code>DTSTAMP</code>创建的时间、<code>UID</code>标识符、<code>SUMMARY</code>事件名、<code>DTSTART</code>事件开始时间、<code>DTEND</code>事件结束时间、<code>RRULE</code>重复方式（包括<code>FREQ</code>频率、<code>UNTIL</code>重复截至时间、<code>INTERVAL</code>间隔）、<code>LOCATION</code>地点、<code>DESCRIPTION</code>详细信息。掌握了这些东西，下面就开始吧！</p>
+<h3 id="定位至教务系统中的课程表"><a href="#定位至教务系统中的课程表" class="headerlink" title="定位至教务系统中的课程表"></a>定位至教务系统中的课程表</h3><p>查看网页源码，可以发现，教务系统的课程表嵌套在两层iframe（<code>top-&gt;page_iframe-&gt;iframe0</code>）中，经过一番努力，定位到了！</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> page_iframe = <span class="built_in">document</span>.getElementById(<span class="string">"page_iframe"</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> iframe0 = page_iframe.contentDocument.getElementById(<span class="string">"iframe0"</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> table = iframe0.contentDocument.getElementsByTagName(<span class="string">"table"</span>)[<span class="number">0</span>];</span></pre></td></tr></table></figure>
+
+<p>下面就可以对表格里的内容<del>为所欲为</del>进行操作了。</p>
+<h3 id="获取表格中课程名和上课时间非空的行"><a href="#获取表格中课程名和上课时间非空的行" class="headerlink" title="获取表格中课程名和上课时间非空的行"></a>获取表格中课程名和上课时间非空的行</h3><p>第一要事！确保这个课是存在的，这个简单一点：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; table.rows.length; i++) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> courseName = table.rows[i].cells[<span class="number">1</span>].innerText;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> teacherName = table.rows[i].cells[<span class="number">5</span>].innerText;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> timeAddress = table.rows[i].cells[<span class="number">9</span>].innerText;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> (courseName !== <span class="string">""</span> &amp;&amp; timeAddress !== <span class="string">""</span>) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">        ...</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<h3 id="构建VEVENT"><a href="#构建VEVENT" class="headerlink" title="构建VEVENT"></a>构建<code>VEVENT</code></h3><p><code>courseName</code>就作为<code>SUMMARY</code>吧，下面是对<code>timeAddress</code>的解析，从中提取出日期时间地址</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> toString = <span class="function"><span class="keyword">function</span> (<span class="params">date</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> date.toISOString().split(<span class="regexp">/-|:|[.]/</span>).slice(<span class="number">0</span>, <span class="number">4</span>).join(<span class="string">""</span>) + <span class="string">"00Z"</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> events = timeAddress.split(<span class="string">' '</span>).filter(<span class="function"><span class="params">n</span> =&gt;</span> n != <span class="string">""</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; events.length; j++) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">//周一:1-11周,每1周;1-2节,3区,附3-401 ==&gt; [一,1-11,1,1-2,3区,附3-401]</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> informations = events[j].split(<span class="regexp">/周,每|周|节,|:|,|;/</span>).filter(<span class="function"><span class="params">n</span> =&gt;</span> n != <span class="string">""</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> description = <span class="string">"第"</span> + events[j].split(<span class="string">";"</span>)[<span class="number">1</span>] + <span class="string">" "</span> + teacherName;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> weekDay = weekToNum[informations[<span class="number">0</span>]];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> startWeek = <span class="built_in">parseInt</span>(informations[<span class="number">1</span>].split(<span class="string">"-"</span>)[<span class="number">0</span>]);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> endWeek = <span class="built_in">parseInt</span>(informations[<span class="number">1</span>].split(<span class="string">"-"</span>)[<span class="number">1</span>]);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> interval = <span class="built_in">parseInt</span>(informations[<span class="number">2</span>]);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> startTime = class_start[<span class="built_in">parseInt</span>(informations[<span class="number">3</span>].split(<span class="string">'-'</span>)[<span class="number">0</span>])];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> endTime = class_start[<span class="built_in">parseInt</span>(informations[<span class="number">3</span>].split(<span class="string">'-'</span>)[<span class="number">1</span>])];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> address = [informations[<span class="number">4</span>], informations[<span class="number">5</span>], teacherName].join(<span class="string">" "</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> startDate = <span class="keyword">new</span> <span class="built_in">Date</span>(),endDate=<span class="keyword">new</span> <span class="built_in">Date</span>(),untilDate=<span class="keyword">new</span> <span class="built_in">Date</span>();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">    startDate.setDate(startDate.getDate() - startDate.getDay() - (currentWeek - startWeek) * <span class="number">7</span> + weekDay);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    startDate.setHours(startTime[<span class="number">0</span>], startTime[<span class="number">1</span>], <span class="number">0</span>, <span class="number">0</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    endDate.setDate(endDate.getDate() - endDate.getDay() - (currentWeek - startWeek) * <span class="number">7</span> + weekDay);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    endDate.setHours(endTime[<span class="number">0</span>],endTime[<span class="number">1</span>]+class_time);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">    untilDate.setDate(untilDate.getDate() - untilDate.getDay() + (endWeek - currentWeek) * <span class="number">7</span> + weekDay + <span class="number">1</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">    untilDate.setHours(endTime[<span class="number">0</span>],endTime[<span class="number">1</span>]+class_time);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">    calendarEvents.push([</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">        <span class="string">'BEGIN:VEVENT'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">        <span class="string">'DTSTAMP:'</span> + toString(<span class="keyword">new</span> <span class="built_in">Date</span>()),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">        <span class="string">'UID:'</span> + calendarEvents.length + <span class="string">'@'</span> + <span class="string">'https://chaiqingao.github.io/'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">        <span class="string">'SUMMARY:'</span> + courseName,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">        <span class="string">'DTSTART:'</span> + toString(startDate),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">        <span class="string">'DTEND:'</span> + toString(endDate),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">        <span class="string">'RRULE:FREQ=WEEKLY;UNTIL='</span> + toString(untilDate) + <span class="string">';INTERVAL='</span> + interval,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">        <span class="string">'LOCATION:'</span> + address,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">        <span class="string">'DESCRIPTION:'</span> + description,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">        <span class="string">'END:VEVENT'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">    ].join(SEPARATOR));</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>这里的<code>calendarEvents</code>是一个事件数组，里面存储了所有的课程，加上头尾就可以保存了😁</p>
+<h3 id="保存文件"><a href="#保存文件" class="headerlink" title="保存文件"></a>保存文件</h3><p>这里使用了<code>FileSaver.js</code>用于保存文件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fileName = year + <span class="string">"学年第"</span> + term + <span class="string">"学期.ics"</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> calendar = calendar_start + SEPARATOR + calendarEvents.join(SEPARATOR) + calendar_end;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> blob;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (navigator.userAgent.indexOf(<span class="string">'MSIE 10'</span>) === <span class="number">-1</span>) &#123; <span class="comment">// chrome or firefox</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    blob = <span class="keyword">new</span> Blob([calendar]);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125; <span class="keyword">else</span> &#123; <span class="comment">// ie</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> bb = <span class="keyword">new</span> BlobBuilder();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    bb.append(calendar);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    blob = bb.getBlob(<span class="string">'text/x-vCalendar;charset='</span> + <span class="built_in">document</span>.characterSet);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<h2 id="结果展示"><a href="#结果展示" class="headerlink" title="结果展示"></a>结果展示</h2><p>这里将ics文件导入至登录了Outlook邮箱的Win10日历，还是很不错的嘛😜~<br><img src="https://s1.ax1x.com/2020/03/13/8uT8Nn.png" alt="Win10日历"><br>再打开iPadOS日历看看，已经同步了👍~（前提是登录相同的邮箱）<br><img src="https://s1.ax1x.com/2020/03/13/8uTbgf.jpg" alt="iPadOS日历"><br>就剩Android咯，打开一看发现并没有同步😥，又去搜了一些教程，并没有什么很好的解决方法，只好把ics文件发送至手机然后手动打开了。<br><img src="https://s1.ax1x.com/2020/03/13/8uT7Ct.jpg" alt="Android日历"></p>
+<h2 id="脚本下载地址"><a href="#脚本下载地址" class="headerlink" title="脚本下载地址"></a>脚本下载地址</h2><p>将以上内容做成了油猴助手脚本并上传至了greasyfork，关于油猴助手请点<a href="https://www.tampermonkey.net/" target="_blank" rel="noopener">这里</a>，下载脚本请点<a href="https://greasyfork.org/zh-CN/scripts/397788-%E8%AF%BE%E8%A1%A8%E5%8A%A9%E6%89%8B" target="_blank" rel="noopener">这里</a></p>
+<p>💫脚本特点：一键保存ics文件，方便快捷</p>
+<h2 id="Github项目地址"><a href="#Github项目地址" class="headerlink" title="Github项目地址"></a>Github项目地址</h2><p>千山万水总是情，给个Star行不行 <a href="https://github.com/chaiqingao/Curriculum-to-iCalendar" target="_blank" rel="noopener">Curriculum-to-iCalendar</a></p>
+<h2 id="目前支持的教务系统"><a href="#目前支持的教务系统" class="headerlink" title="目前支持的教务系统"></a>目前支持的教务系统</h2><ul>
+<li>WHU</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>第一次写这种油猴助手的脚本，也算是练习了Javascript的应用吧，过程磕磕绊绊的，从有这个想法到实现经历了两天时间，找朋友测试了一下，发现了很多🐛bug……修改再测试，测试再修改，到现在还算是挺完善的，也欢迎大家在Github提Issue。</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>如果您觉得这篇分享不错，可以打赏作者一包辣条哦~</div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Qingao Chai 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="Qingao Chai 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Javascript/" rel="tag"># Javascript</a>
+              <a href="/tags/%E8%AF%BE%E7%A8%8B%E8%A1%A8/" rel="tag"># 课程表</a>
+              <a href="/tags/iCalendar/" rel="tag"># iCalendar</a>
+          </div>
+
+        
+
+
+        
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="comments"></div>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简要介绍"><span class="nav-number">1.</span> <span class="nav-text">简要介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开发过程"><span class="nav-number">2.</span> <span class="nav-text">开发过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备工作"><span class="nav-number">2.1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定位至教务系统中的课程表"><span class="nav-number">2.2.</span> <span class="nav-text">定位至教务系统中的课程表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取表格中课程名和上课时间非空的行"><span class="nav-number">2.3.</span> <span class="nav-text">获取表格中课程名和上课时间非空的行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建VEVENT"><span class="nav-number">2.4.</span> <span class="nav-text">构建VEVENT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#保存文件"><span class="nav-number">2.5.</span> <span class="nav-text">保存文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结果展示"><span class="nav-number">3.</span> <span class="nav-text">结果展示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#脚本下载地址"><span class="nav-number">4.</span> <span class="nav-text">脚本下载地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Github项目地址"><span class="nav-number">5.</span> <span class="nav-text">Github项目地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目前支持的教务系统"><span class="nav-number">6.</span> <span class="nav-text">目前支持的教务系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Qingao Chai"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Qingao Chai</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/chaiqingao" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;chaiqingao" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:chaiqingao@qq.com" title="E-Mail → mailto:chaiqingao@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Qingao Chai</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'qFi1ORBg5iM7HmMldsI3TB4J-gzGzoHsz',
+    appKey: 'xtzL8qcaVyfk3m6kb89Xlunv',
+    placeholder: "听说留下邮箱可以收到回复通知哦~💬",
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname,
+    recordIP: false,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>
