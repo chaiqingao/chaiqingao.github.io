@@ -45,28 +45,32 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="小小柴io">
-<meta property="og:url" content="https:&#x2F;&#x2F;chaiqingao.github.io&#x2F;index.html">
+  <meta name="description" content="当自然数$n$依次取$1,2,3,…,N$时，算式$⌊n&#x2F;2⌋+⌊n&#x2F;3⌋+⌊n&#x2F;5⌋$有多少个不同的值？（注：$⌊x⌋$为取整函数，表示不超过$x$的最大自然数，即$x$的整数部分。）">
+<meta name="keywords" content="C++,算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1087 有多少不同的值 (20分)">
+<meta property="og:url" content="https:&#x2F;&#x2F;chaiqingao.github.io&#x2F;2020&#x2F;04&#x2F;10&#x2F;1087-%E6%9C%89%E5%A4%9A%E5%B0%91%E4%B8%8D%E5%90%8C%E7%9A%84%E5%80%BC-20%E5%88%86&#x2F;index.html">
 <meta property="og:site_name" content="小小柴io">
+<meta property="og:description" content="当自然数$n$依次取$1,2,3,…,N$时，算式$⌊n&#x2F;2⌋+⌊n&#x2F;3⌋+⌊n&#x2F;5⌋$有多少个不同的值？（注：$⌊x⌋$为取整函数，表示不超过$x$的最大自然数，即$x$的整数部分。）">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-04-10T05:27:26.000Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://chaiqingao.github.io/">
+<link rel="canonical" href="https://chaiqingao.github.io/2020/04/10/1087-%E6%9C%89%E5%A4%9A%E5%B0%91%E4%B8%8D%E5%90%8C%E7%9A%84%E5%80%BC-20%E5%88%86/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: true,
-    isPost: false,
+    isHome: false,
+    isPost: true,
     isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>小小柴io</title>
+  <title>1087 有多少不同的值 (20分) | 小小柴io</title>
   
 
 
@@ -185,10 +189,10 @@
             
 
   <div class="posts-expand">
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://chaiqingao.github.io/2020/04/10/1087-%E6%9C%89%E5%A4%9A%E5%B0%91%E4%B8%8D%E5%90%8C%E7%9A%84%E5%80%BC-20%E5%88%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -202,8 +206,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/10/1087-%E6%9C%89%E5%A4%9A%E5%B0%91%E4%B8%8D%E5%90%8C%E7%9A%84%E5%80%BC-20%E5%88%86/" class="post-title-link" itemprop="url">1087 有多少不同的值 (20分)</a>
+          1087 有多少不同的值 (20分)
         </h1>
 
         <div class="post-meta">
@@ -259,132 +262,67 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>当自然数$n$依次取$1,2,3,…,N$时，算式$⌊n/2⌋+⌊n/3⌋+⌊n/5⌋$有多少个不同的值？（注：$⌊x⌋$为取整函数，表示不超过$x$的最大自然数，即$x$的整数部分。）</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/04/10/1087-%E6%9C%89%E5%A4%9A%E5%B0%91%E4%B8%8D%E5%90%8C%E7%9A%84%E5%80%BC-20%E5%88%86/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
+        <p>当自然数$n$依次取$1,2,3,…,N$时，算式$⌊n/2⌋+⌊n/3⌋+⌊n/5⌋$有多少个不同的值？（注：$⌊x⌋$为取整函数，表示不超过$x$的最大自然数，即$x$的整数部分。）</p>
+<a id="more"></a>
+
+<h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>输入给出一个正整数$N(2≤N≤10​^4)$。</p>
+<h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>在一行中输出题面中算式取到的不同值的个数。</p>
+<h2 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">2017</span></pre></td></tr></table></figure>
+
+<h2 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">1480</span></pre></td></tr></table></figure>
+
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>正常情况下，随着$n$增加1，算式会增加1或者0；当$n$是6/10/15的整数倍的时候，算式会增加2（缺失1个数字）；当$n$是30的整数倍的时候，算式会增加3（缺失2个数字）。</p>
+<p>因此要计算不同值的个数，只需要计算最后一个数字代入的结果+1（+1是因为有0的存在），再减去缺失的数字个数即可（30的整数倍不减反加是因为30是6,10,15的最小公倍数，已经被减了3次，因此需要加1次来弥补）。</p>
+<p>$ans = \frac{N}{2}+\frac{N}{3}+\frac{N}{5}+1-\frac{N}{6}-\frac{N}{10}-\frac{N}{15}+\frac{N}{30}$</p>
+<h2 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="function"></span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">int</span> n;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>,n/<span class="number">2</span>+n/<span class="number">3</span>+n/<span class="number">5</span>+<span class="number">1</span>-n/<span class="number">6</span>-n/<span class="number">10</span>-n/<span class="number">15</span>+n/<span class="number">30</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<h2 id="原题地址"><a href="#原题地址" class="headerlink" title="原题地址"></a>原题地址</h2><p><a href="https://pintia.cn/problem-sets/994805260223102976/problems/1038429191091781632" target="_blank" rel="noopener">1087 有多少不同的值 (20分)</a></p>
+
     </div>
 
     
     
     
+        <div class="reward-container">
+  <div>如果您觉得这篇分享不错，可以打赏作者一包辣条哦~</div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Qingao Chai 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="Qingao Chai 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"># C++</a>
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
+          </div>
 
         
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://chaiqingao.github.io/2020/03/13/%E8%AF%BE%E8%A1%A8%E5%8A%A9%E6%89%8B/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Qingao Chai">
-      <meta itemprop="description" content="">
-    </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小小柴io">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/13/%E8%AF%BE%E8%A1%A8%E5%8A%A9%E6%89%8B/" class="post-title-link" itemprop="url">课表助手</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-13 14:12:48" itemprop="dateCreated datePublished" datetime="2020-03-13T14:12:48+08:00">2020-03-13</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B0%8F%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index">
-                    <span itemprop="name">小工具</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B%E5%88%86%E4%BA%AB/" itemprop="url" rel="index">
-                    <span itemprop="name">开发过程分享</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/2020/03/13/%E8%AF%BE%E8%A1%A8%E5%8A%A9%E6%89%8B/" class="post-meta-item leancloud_visitors" data-flag-title="课表助手" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">评论数：</span>
-    
-    <a title="valine" href="/2020/03/13/%E8%AF%BE%E8%A1%A8%E5%8A%A9%E6%89%8B/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/03/13/%E8%AF%BE%E8%A1%A8%E5%8A%A9%E6%89%8B/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="简要介绍"><a href="#简要介绍" class="headerlink" title="简要介绍"></a>简要介绍</h2><p>作者是一名学生，需要在手机上记录课表，虽然现在已经有很多的课程表App了，但是有些呢不支持从教务系统导入，有些呢会有很多广告，再有些就是界面很丑啦~</p>
-<p>因此，为了能够便捷的查看课表，免去现有的课程表软件带来的烦恼，我决定！开发一款无害的课表软件。于是，这款“课表助手”就应运而生（虽然不是一个App，后面再详细解释），它的作用不是显示课表，而是将教务系统中的课表转为<a href="https://zh.wikipedia.org/wiki/ICalendar" target="_blank" rel="noopener">iCalendar</a>文件。iCalendar是一种日历数据交换的标准，既然是标准了，那大家肯定都支持啦，目前已经测试了Win10/Android9/iPadOS13，都可以导入至日历。导入后就可以愉快的使用系统日历查看课表了，不得不说，系统自带的日历界面清新、使用流畅、没有广告（用过的都说好🙄）。</p>
-<ul>
-<li>脚本安装请查看<a href="https://greasyfork.org/zh-CN/scripts/397788-%E8%AF%BE%E8%A1%A8%E5%8A%A9%E6%89%8B" target="_blank" rel="noopener">Greasyfork</a></li>
-<li>完整源码请查看<a href="https://github.com/chaiqingao/Curriculum-to-iCalendar" target="_blank" rel="noopener">Github</a></li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/03/13/%E8%AF%BE%E8%A1%A8%E5%8A%A9%E6%89%8B/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/13/%E8%AF%BE%E8%A1%A8%E5%8A%A9%E6%89%8B/" rel="prev" title="课表助手">
+      <i class="fa fa-chevron-left"></i> 课表助手
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
@@ -392,12 +330,10 @@
 
   </div>
 
-  
-
-
 
           </div>
           
+    <div class="comments" id="comments"></div>
 
         </div>
           
@@ -422,6 +358,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#输入格式"><span class="nav-number">1.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出格式"><span class="nav-number">2.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入样例"><span class="nav-number">3.</span> <span class="nav-text">输入样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出样例"><span class="nav-number">4.</span> <span class="nav-text">输出样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析"><span class="nav-number">5.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AC代码"><span class="nav-number">6.</span> <span class="nav-text">AC代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原题地址"><span class="nav-number">7.</span> <span class="nav-text">原题地址</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
