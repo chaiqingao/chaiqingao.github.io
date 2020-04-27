@@ -49,17 +49,17 @@ favicon:
 
 footer:
   # Specify the date when the site was setup. If not defined, current year will be used.
-  #since: 2015
+  since: 2019
 
   # Icon between year and copyright info.
   icon:
     # Icon name in Font Awesome. See: https://fontawesome.com/v4.7.0/icons/
     # `heart` is recommended with animation in red (#ff0000).
-    name: user
+    name: heart
     # If you want to animate the icon, set it to true.
-    animated: false
+    animated: true
     # Change the color of icon, using Hex Code.
-    color: "#808080"
+    color: "#ff0000"
 
   # If not defined, `author` from Hexo `_config.yml` will be used.
   copyright:
@@ -95,8 +95,8 @@ footer:
 creative_commons:
   license: by-nc-sa
   sidebar: false
-  post: false
-  language:
+  post: true
+  language: deed.zh
 
 
 # ---------------------------------------------------------------
@@ -171,7 +171,7 @@ avatar:
   # If true, the avatar will be dispalyed in circle.
   rounded: true
   # If true, the avatar will be rotated with the cursor.
-  rotated: true
+  rotated: false
 
 # Posts / Categories / Tags in sidebar.
 site_state: true
@@ -358,11 +358,11 @@ codeblock:
   highlight_theme: normal
   # Add copy button on codeblock
   copy_button:
-    enable: false
+    enable: true
     # Show text copy result.
-    show_result: false
+    show_result: true
     # Available values: default | flat | mac
-    style:
+    style: default
 
 back2top:
   enable: true
@@ -390,8 +390,8 @@ bookmark:
 
 # `Follow me on GitHub` banner in the top-right corner.
 github_banner:
-  enable: false
-  permalink: https://github.com/yourname
+  enable: true
+  permalink: https://github.com/chaiqingao
   title: Follow me on GitHub
 
 
@@ -524,7 +524,7 @@ pjax: false
 
 # FancyBox is a tool that offers a nice and elegant way to add zooming functionality for images.
 # For more information: https://fancyapps.com/fancybox
-fancybox: false
+fancybox: true
 
 # A JavaScript library for zooming images like Medium.
 # Do not enable both `fancybox` and `mediumzoom`.
@@ -533,11 +533,11 @@ mediumzoom: false
 
 # Vanilla JavaScript plugin for lazyloading images.
 # For more information: https://github.com/ApoorvSaxena/lozad.js
-lazyload: false
+lazyload: true
 
 # Pangu Support
 # For more information: https://github.com/vinta/pangu.js
-pangu: false
+pangu: true
 
 # Quicklink Support
 # For more information: https://github.com/GoogleChromeLabs/quicklink
