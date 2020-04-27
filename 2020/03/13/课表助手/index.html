@@ -14,6 +14,7 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
 
 <script id="hexo-configurations">
@@ -25,13 +26,13 @@
     version: '7.6.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
+    copycode: {"enable":true,"show_result":true,"style":"default"},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
     bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
+    fancybox: true,
     mediumzoom: false,
-    lazyload: false,
-    pangu: false,
+    lazyload: true,
+    pangu: true,
     algolia: {
       appID: '',
       apiKey: '',
@@ -184,6 +185,8 @@
     <span>0%</span>
   </div>
 
+  <a href="https://github.com/chaiqingao" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
 
     <main class="main">
       <div class="main-inner">
@@ -281,7 +284,7 @@
 </ul>
 <a id="more"></a>
 
-<h2 id="开发过程"><a href="#开发过程" class="headerlink" title="开发过程"></a>开发过程</h2><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>为了明确我要做什么，首先打开了教务系统课程表页面，他是这个样子的：<br><img src="https://s1.ax1x.com/2020/03/13/8uc7a8.png" alt="教务系统"><br>看了一下，嗯！挺好的，适合序列化。然后再看一下iCalendar文件的样子：</p>
+<h2 id="开发过程"><a href="#开发过程" class="headerlink" title="开发过程"></a>开发过程</h2><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>为了明确我要做什么，首先打开了教务系统课程表页面，他是这个样子的：<br><img alt="教务系统" data-src="https://s1.ax1x.com/2020/03/13/8uc7a8.png"><br>看了一下，嗯！挺好的，适合序列化。然后再看一下iCalendar文件的样子：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">BEGIN:VCALENDAR</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">VERSION:2.0</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">PRODID:Curriculum-to-iCalendar</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">BEGIN:VEVENT</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">DTSTAMP:20200313T032000Z</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">UID:0@https://chaiqingao.github.io/</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">SUMMARY:summary</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">DTSTART:20200217T000000Z</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">DTEND:20200217T013500Z</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">RRULE:FREQ=WEEKLY;UNTIL=20200428T013500Z;INTERVAL=1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">LOCATION:location</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">DESCRIPTION:description</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">END:VEVENT</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">BEGIN:VEVENT</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">......</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">END:VEVENT</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">END:VCALENDAR</span></pre></td></tr></table></figure>
 
 <p>不难看出，一个iCalendar文件由三部分组成：头 + [VENVENT数组] + 尾。每一个<code>VENVENT</code>有<code>DTSTAMP</code>创建的时间、<code>UID</code>标识符、<code>SUMMARY</code>事件名、<code>DTSTART</code>事件开始时间、<code>DTEND</code>事件结束时间、<code>RRULE</code>重复方式（包括<code>FREQ</code>频率、<code>UNTIL</code>重复截至时间、<code>INTERVAL</code>间隔）、<code>LOCATION</code>地点、<code>DESCRIPTION</code>详细信息。掌握了这些东西，下面就开始吧！</p>
@@ -299,7 +302,7 @@
 <h3 id="保存文件"><a href="#保存文件" class="headerlink" title="保存文件"></a>保存文件</h3><p>这里使用了<code>FileSaver.js</code>用于保存文件</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fileName = year + <span class="string">"学年第"</span> + term + <span class="string">"学期.ics"</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> calendar = calendar_start + SEPARATOR + calendarEvents.join(SEPARATOR) + calendar_end;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> blob;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (navigator.userAgent.indexOf(<span class="string">'MSIE 10'</span>) === <span class="number">-1</span>) &#123; <span class="comment">// chrome or firefox</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    blob = <span class="keyword">new</span> Blob([calendar]);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125; <span class="keyword">else</span> &#123; <span class="comment">// ie</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> bb = <span class="keyword">new</span> BlobBuilder();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    bb.append(calendar);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    blob = bb.getBlob(<span class="string">'text/x-vCalendar;charset='</span> + <span class="built_in">document</span>.characterSet);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 
-<h2 id="结果展示"><a href="#结果展示" class="headerlink" title="结果展示"></a>结果展示</h2><p>这里将ics文件导入至登录了Outlook邮箱的Win10日历，还是很不错的嘛😜~<br><img src="https://s1.ax1x.com/2020/03/13/8uT8Nn.png" alt="Win10日历"><br>再打开iPadOS日历看看，已经同步了👍~（前提是登录相同的邮箱）<br><img src="https://s1.ax1x.com/2020/03/13/8uTbgf.jpg" alt="iPadOS日历"><br>就剩Android咯，打开一看发现并没有同步😥，又去搜了一些教程，并没有什么很好的解决方法，只好把ics文件发送至手机然后手动打开了。<br><img src="https://s1.ax1x.com/2020/03/13/8uT7Ct.jpg" alt="Android日历"></p>
+<h2 id="结果展示"><a href="#结果展示" class="headerlink" title="结果展示"></a>结果展示</h2><p>这里将ics文件导入至登录了Outlook邮箱的Win10日历，还是很不错的嘛😜~<br><img alt="Win10日历" data-src="https://s1.ax1x.com/2020/03/13/8uT8Nn.png"><br>再打开iPadOS日历看看，已经同步了👍~（前提是登录相同的邮箱）<br><img alt="iPadOS日历" data-src="https://s1.ax1x.com/2020/03/13/8uTbgf.jpg"><br>就剩Android咯，打开一看发现并没有同步😥，又去搜了一些教程，并没有什么很好的解决方法，只好把ics文件发送至手机然后手动打开了。<br><img alt="Android日历" data-src="https://s1.ax1x.com/2020/03/13/8uT7Ct.jpg"></p>
 <h2 id="脚本下载地址"><a href="#脚本下载地址" class="headerlink" title="脚本下载地址"></a>脚本下载地址</h2><p>将以上内容做成了油猴助手脚本并上传至了greasyfork，关于油猴助手请点<a href="https://www.tampermonkey.net/" target="_blank" rel="noopener">这里</a>，下载脚本请点<a href="https://greasyfork.org/zh-CN/scripts/397788-%E8%AF%BE%E8%A1%A8%E5%8A%A9%E6%89%8B" target="_blank" rel="noopener">这里</a></p>
 <p>💫脚本特点：一键保存ics文件，方便快捷</p>
 <h2 id="Github项目地址"><a href="#Github项目地址" class="headerlink" title="Github项目地址"></a>Github项目地址</h2><p>千山万水总是情，给个Star行不行 <a href="https://github.com/chaiqingao/Curriculum-to-iCalendar" target="_blank" rel="noopener">Curriculum-to-iCalendar</a></p>
@@ -331,6 +334,23 @@
       </div>
 
   </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Qingao Chai
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="/https:/chaiqingao.github.io/2020/03/13/%E8%AF%BE%E8%A1%A8%E5%8A%A9%E6%89%8B/" title="课表助手">https://chaiqingao.github.io/2020/03/13/课表助手/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
 </div>
 
 
@@ -405,20 +425,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -450,10 +470,10 @@
 
 <div class="copyright">
   
-  &copy; 
+  &copy; 2019 – 
   <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Qingao Chai</span>
 </div>
@@ -481,6 +501,10 @@
   
   <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
   <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
