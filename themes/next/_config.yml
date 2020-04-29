@@ -125,7 +125,7 @@ menu:
   tags: /tags/ || tags
   categories: /categories/ || th
   archives: /archives/ || archive
-  # schedule: /schedule/ || calendar
+  schedule: /schedule/ || calendar
   # sitemap: /sitemap.xml || sitemap
   # commonweal: /404/ || heartbeat
 
@@ -319,11 +319,11 @@ tagcloud:
 # Google Calendar
 # Share your recent schedule to others via calendar page.
 calendar:
-  calendar_id: <required> # Your Google account E-Mail
-  api_key: <required>
+  calendar_id: cm4oi93fu61c61j7imdd2b54b4@group.calendar.google.com # Your Google account E-Mail
+  api_key: AIzaSyAzpJgKFoSWFZRZIMFpSh5jKDwx7ggBx38
   orderBy: startTime
-  offsetMax: 24 # Time Range
-  offsetMin: 4 # Time Range
+  offsetMax: 48 # Time Range
+  offsetMin: 24 # Time Range
   showDeleted: false
   singleEvents: true
   maxResults: 250
