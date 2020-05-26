@@ -4,7 +4,7 @@ date: {{ date }}
 updated: {{ date }}
 mathjax: true
 tags:
-- C++
+- CPP
 - 算法
 categories:
 - PAT甲级真题
