@@ -3,7 +3,7 @@ from datetime import datetime
 with open('url_cookie.txt', 'rt') as f:
 	data = f.read().split('\n')
 data = [item for item in data if item != '']
-url = data[1]
+url = data[1].replace('/pintia.cn/','/pintia.cn/api/')
 headers = {
 	'Accept': 'application/json;charset=UTF-8',
 	'cookie': data[0]

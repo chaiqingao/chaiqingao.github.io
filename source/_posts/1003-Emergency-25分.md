@@ -1,7 +1,7 @@
 ---
 title: 1003 Emergency (25分)
 date: 2020-04-27 19:07:26
-updated: 2020-05-26 23:31:18
+updated: 2020-04-27 19:07:26
 mathjax: true
 tags:
 - CPP
@@ -52,7 +52,7 @@ For each test case, print in one line two numbers: the number of different short
 ## AC代码
 
 ```cpp
-#include &lt;iostream&gt;
+#include <iostream>
 using namespace std;
 #define MAXV 500
 const int INF = 0x3fffffff;
@@ -65,12 +65,12 @@ void dijkstra(int s)
     d[s] = 0;
     w[s] = weight[s];
     num[s] = 1;
-    for (int i = 0; i &lt; n; i++)
+    for (int i = 0; i < n; i++)
     {
         int v = -1, mindis = INF;
-        for (int j = 0; j &lt; n; j++)
+        for (int j = 0; j < n; j++)
         {
-            if (!vis[j] && d[j] &lt; mindis)
+            if (!vis[j] && d[j] < mindis)
             {
                 mindis = d[j];
                 v = j;
@@ -78,11 +78,11 @@ void dijkstra(int s)
         }
         if (v == -1 || v == ed) return;
         vis[v] = true;
-        for (int j = 0; j &lt; n; j++)
+        for (int j = 0; j < n; j++)
         {
             if (!vis[j] && dis[v][j] != INF)
             {
-                if (d[v] + dis[v][j] &lt; d[j])
+                if (d[v] + dis[v][j] < d[j])
                 {
                     d[j] = d[v] + dis[v][j];
                     num[j] = num[v];
@@ -91,7 +91,7 @@ void dijkstra(int s)
                 else if (d[v] + dis[v][j] == d[j])
                 {
                     num[j] += num[v];
-                    if (weight[j] + w[v] &gt; w[j]) w[j] = weight[j] + w[v];
+                    if (weight[j] + w[v] > w[j]) w[j] = weight[j] + w[v];
                 }
             }
         }
