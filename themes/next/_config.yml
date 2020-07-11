@@ -183,7 +183,7 @@ site_state: true
 social:
   GitHub: https://github.com/chaiqingao || github
   E-Mail: mailto:chaiqingao@qq.com || envelope
-  #Weibo: https://weibo.com//u/5124205143 || weibo
+  Weibo: https://weibo.com//u/5124205143 || weibo
   #Google: https://plus.google.com/yourname || google
   #Twitter: https://twitter.com/yourname || twitter
   #FB Page: https://www.facebook.com/yourname || facebook
@@ -191,7 +191,7 @@ social:
   #YouTube: https://youtube.com/yourname || youtube
   #Instagram: https://instagram.com/yourname || instagram
   #Skype: skype:yourname?call|chat || skype
-  #RSS: /atom.xml || rss
+  RSS: /atom.xml || rss
 
 social_icons:
   enable: true
